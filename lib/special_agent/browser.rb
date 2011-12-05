@@ -1,7 +1,7 @@
-require 'agent_orange/base'
-require 'agent_orange/version'
+require 'special_agent/base'
+require 'special_agent/version'
 
-module AgentOrange
+module SpecialAgent
   class Browser < Base
     attr_accessor :type, :name, :version
     attr_accessor :security
@@ -14,7 +14,7 @@ module AgentOrange
     }
 
     def parse(user_agent)
-      AgentOrange.debug "BROWSER PARSING", 2
+      SpecialAgent.debug "BROWSER PARSING", 2
 
       groups = parse_user_agent_string_into_groups(user_agent)
       groups.each_with_index do |content,i|
@@ -40,18 +40,18 @@ module AgentOrange
 
     def populate(content={})
       self.debug_raw_content(content)
-      AgentOrange.debug "", 2
+      SpecialAgent.debug "", 2
 
       self.type = self.determine_type(BROWSERS, content[:name])
       self.name = content[:name]
-      self.version = AgentOrange::Version.new(content[:version])
+      self.version = SpecialAgent::Version.new(content[:version])
       self
     end
 
     def analysis
-      AgentOrange.debug "BROWSER ANALYSIS", 2
+      SpecialAgent.debug "BROWSER ANALYSIS", 2
       self.debug_content(:type => self.type, :name => self.name, :version => self.version)
-      AgentOrange.debug "", 2
+      SpecialAgent.debug "", 2
     end
 
     def to_s

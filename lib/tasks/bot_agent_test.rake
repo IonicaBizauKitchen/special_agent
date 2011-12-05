@@ -1,4 +1,4 @@
-require "agent_orange"
+require "special_agent"
 require 'rexml/document'
 
 task :test_bots do
@@ -51,7 +51,7 @@ task :test_bots do
 	end
 	puts "testing..."
 	bot_user_agent_strings.each do |ua_str|
-		ua = AgentOrange::UserAgent.new(ua_str)
+		ua = SpecialAgent::UserAgent.new(ua_str)
 		if ua.is_bot?
 			#puts "SUCCESS:: " + ua_str
 			success += 1
@@ -69,7 +69,7 @@ task :test_bots do
 	fail = 0 
 
         browser_user_agent_strings.each do |ua_str|
-                ua = AgentOrange::UserAgent.new(ua_str)
+                ua = SpecialAgent::UserAgent.new(ua_str)
                 if !ua.is_bot?
                         #puts "SUCCESS:: " + ua_str
                         success += 1

@@ -1,6 +1,6 @@
-require 'agent_orange/device'
+require 'special_agent/device'
 
-module AgentOrange
+module SpecialAgent
   DEBUG = false
   DEBUG_LEVEL = 1
 
@@ -15,13 +15,13 @@ module AgentOrange
 
     def parse(user_agent)
       self.user_agent_string = user_agent
-      self.device = AgentOrange::Device.new(self.user_agent_string)
+      self.device = SpecialAgent::Device.new(self.user_agent_string)
 
-      AgentOrange.debug "Device   = #{self.device}"
-      AgentOrange.debug "Platform = #{self.device.platform}"
-      AgentOrange.debug "OS       = #{self.device.operating_system}"
-      AgentOrange.debug "Engine   = #{self.device.engine}"
-      AgentOrange.debug "Browser  = #{self.device.engine.browser}"
+      SpecialAgent.debug "Device   = #{self.device}"
+      SpecialAgent.debug "Platform = #{self.device.platform}"
+      SpecialAgent.debug "OS       = #{self.device.operating_system}"
+      SpecialAgent.debug "Engine   = #{self.device.engine}"
+      SpecialAgent.debug "Browser  = #{self.device.engine.browser}"
 
       self.summary
     end
@@ -56,22 +56,22 @@ module AgentOrange
     end
 
     def summary
-      AgentOrange.debug
-      AgentOrange.debug "SUMMARY"
-      AgentOrange.debug "  Is computer? #{self.is_computer?}"
+      SpecialAgent.debug
+      SpecialAgent.debug "SUMMARY"
+      SpecialAgent.debug "  Is computer? #{self.is_computer?}"
       if self.is_computer?
-        AgentOrange.debug "    Is a Mac? #{self.is_computer? :mac}"
-        AgentOrange.debug "    Is a PC? #{self.is_computer? :pc}"
+        SpecialAgent.debug "    Is a Mac? #{self.is_computer? :mac}"
+        SpecialAgent.debug "    Is a PC? #{self.is_computer? :pc}"
       end
-      AgentOrange.debug "  Is mobile? #{self.is_mobile?}"
+      SpecialAgent.debug "  Is mobile? #{self.is_mobile?}"
       if self.is_mobile?
-        AgentOrange.debug "    Is an iPhone? #{self.is_mobile? :iphone}"
-        AgentOrange.debug "    Is an iPad? #{self.is_mobile? :ipad}"
-        AgentOrange.debug "    Is an iPod? #{self.is_mobile? :ipod}"
-        AgentOrange.debug "    Is an Android? #{self.is_mobile? :android}"
+        SpecialAgent.debug "    Is an iPhone? #{self.is_mobile? :iphone}"
+        SpecialAgent.debug "    Is an iPad? #{self.is_mobile? :ipad}"
+        SpecialAgent.debug "    Is an iPod? #{self.is_mobile? :ipod}"
+        SpecialAgent.debug "    Is an Android? #{self.is_mobile? :android}"
       end
-      AgentOrange.debug "  Is bot? #{self.is_bot?}"
-      AgentOrange.debug
+      SpecialAgent.debug "  Is bot? #{self.is_bot?}"
+      SpecialAgent.debug
     end
   end
 

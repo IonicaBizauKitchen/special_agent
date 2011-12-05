@@ -1,18 +1,16 @@
 # -*- encoding: utf-8 -*-
 require 'rake'
 $:.push File.expand_path("../lib", __FILE__)
-require "agent_orange/version"
+require "special_agent/version"
 
 Gem::Specification.new do |s|
-  s.name        = "agent_orange"
-  s.version     = AgentOrange::VERSION
-  s.authors     = ["Kevin Elliott"]
-  s.email       = ["kevin@welikeinc.com"]
-  s.homepage    = "http://github.com/kevinelliott/agent_orange"
+  s.name        = "special_agent"
+  s.version     = SpecialAgent::VERSION
+  s.authors     = ["Zeke Sikelianos"]
+  s.email       = ["zeke@sikelianos.com"]
+  s.homepage    = "http://github.com/zeke/special_agent"
   s.summary     = %q{Parse and process User Agents like a secret one}
   s.description = %q{Parse and process User Agents like a secret one}
-
-  s.rubyforge_project = "agent_orange"
 
   s.add_development_dependency "rake"
   s.add_development_dependency "rspec"

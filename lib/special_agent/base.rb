@@ -1,4 +1,4 @@
-module AgentOrange
+module SpecialAgent
   class Base
     
     def initialize(user_agent)
@@ -43,15 +43,15 @@ module AgentOrange
     end
     
     def debug_raw_content(content)
-      AgentOrange.debug "  Raw Name   : #{content[:name]}", 2
-      AgentOrange.debug "  Raw Version: #{content[:version]}", 2
-      AgentOrange.debug "  Raw Comment: #{content[:comment]}", 2
+      SpecialAgent.debug "  Raw Name   : #{content[:name]}", 2
+      SpecialAgent.debug "  Raw Version: #{content[:version]}", 2
+      SpecialAgent.debug "  Raw Comment: #{content[:comment]}", 2
     end
     
     def debug_content(content)
-      AgentOrange.debug "  Type: #{self.type}", 2
-      AgentOrange.debug "  Name: #{self.name}", 2
-      AgentOrange.debug "  Version: #{self.version}", 2
+      SpecialAgent.debug "  Type: #{self.type}", 2
+      SpecialAgent.debug "  Name: #{self.name}", 2
+      SpecialAgent.debug "  Version: #{self.version}", 2
     end
     
   end

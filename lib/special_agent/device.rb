@@ -1,10 +1,10 @@
-require 'agent_orange/base'
-require 'agent_orange/platform'
-require 'agent_orange/operating_system'
-require 'agent_orange/engine'
-require 'agent_orange/version'
+require 'special_agent/base'
+require 'special_agent/platform'
+require 'special_agent/operating_system'
+require 'special_agent/engine'
+require 'special_agent/version'
 
-module AgentOrange
+module SpecialAgent
   class Device < Base
     attr_accessor :type, :name, :version
     attr_accessor :platform
@@ -18,7 +18,7 @@ module AgentOrange
     }
 
     def parse(user_agent)
-      AgentOrange.debug "DEVICE PARSING", 2
+      SpecialAgent.debug "DEVICE PARSING", 2
 
       groups = parse_user_agent_string_into_groups(user_agent)
       groups.each_with_index do |content,i|
@@ -30,14 +30,14 @@ module AgentOrange
 
       self.analysis
 
-      self.platform = AgentOrange::Platform.new(user_agent)
-      self.operating_system = AgentOrange::OperatingSystem.new(user_agent)
-      self.engine = AgentOrange::Engine.new(user_agent)
+      self.platform = SpecialAgent::Platform.new(user_agent)
+      self.operating_system = SpecialAgent::OperatingSystem.new(user_agent)
+      self.engine = SpecialAgent::Engine.new(user_agent)
     end
 
     def populate(content={})
       self.debug_raw_content(content)
-      AgentOrange.debug "", 2
+      SpecialAgent.debug "", 2
 
       self.type = self.determine_type(DEVICES, content[:comment])
       self.name = self.type.to_s.capitalize
@@ -46,9 +46,9 @@ module AgentOrange
     end
 
     def analysis
-      AgentOrange.debug "DEVICE ANALYSIS", 2
+      SpecialAgent.debug "DEVICE ANALYSIS", 2
       self.debug_content(:type => self.type, :name => self.name, :version => self.version)
-      AgentOrange.debug "", 2
+      SpecialAgent.debug "", 2
     end
 
     def is_computer?(name=nil)

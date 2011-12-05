@@ -1,6 +1,6 @@
-require 'agent_orange/base'
+require 'special_agent/base'
 
-module AgentOrange
+module SpecialAgent
   class OperatingSystem < Base
     attr_accessor :type, :name, :version
 
@@ -25,7 +25,7 @@ module AgentOrange
     }
 
     def parse(user_agent)
-      AgentOrange.debug "OPERATING SYSTEM PARSING", 2
+      SpecialAgent.debug "OPERATING SYSTEM PARSING", 2
 
       groups = parse_user_agent_string_into_groups(user_agent)
       groups.each_with_index do |content,i|
@@ -48,18 +48,18 @@ module AgentOrange
 
     def populate(content={})
       self.debug_raw_content(content)
-      AgentOrange.debug "", 2
+      SpecialAgent.debug "", 2
 
       self.type = self.determine_type(OPERATING_SYSTEMS, content[:name])
       self.name = OPERATING_SYSTEM_NAMES[self.type.to_sym]
-      self.version = AgentOrange::Version.new(content[:version])
+      self.version = SpecialAgent::Version.new(content[:version])
       self
     end
 
     def analysis
-      AgentOrange.debug "OPERATING SYSTEM ANALYSIS", 2
+      SpecialAgent.debug "OPERATING SYSTEM ANALYSIS", 2
       self.debug_content(:type => self.type, :name => self.name, :version => self.version)
-      AgentOrange.debug "", 2
+      SpecialAgent.debug "", 2
     end
 
     def to_s

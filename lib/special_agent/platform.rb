@@ -1,6 +1,6 @@
-require 'agent_orange/base'
+require 'special_agent/base'
 
-module AgentOrange
+module SpecialAgent
   class Platform < Base
     attr_accessor :type, :name, :version
 
@@ -24,7 +24,7 @@ module AgentOrange
     }
 
     def parse(user_agent)
-      AgentOrange.debug "PLATFORM PARSING", 2
+      SpecialAgent.debug "PLATFORM PARSING", 2
 
       groups = parse_user_agent_string_into_groups(user_agent)
       groups.each_with_index do |content,i|
@@ -39,7 +39,7 @@ module AgentOrange
 
     def populate(content={})
       self.debug_raw_content(content)
-      AgentOrange.debug "", 2
+      SpecialAgent.debug "", 2
 
       self.type = self.determine_type(PLATFORMS, content[:comment])
       self.name = PLATFORM_NAMES[self.type.to_sym]
@@ -47,13 +47,13 @@ module AgentOrange
       if self.type == :apple
         self.version = case self.determine_type(PLATFORM_VERSIONS, content[:comment])
         when :ipad
-          AgentOrange::Version.new("iPad")
+          SpecialAgent::Version.new("iPad")
         when :iphone
-          AgentOrange::Version.new("iPhone")
+          SpecialAgent::Version.new("iPhone")
         when :ipod
-          AgentOrange::Version.new("iPod")
+          SpecialAgent::Version.new("iPod")
         else
-          AgentOrange::Version.new("Unknown")
+          SpecialAgent::Version.new("Unknown")
         end
       else
         self.version = nil
@@ -63,9 +63,9 @@ module AgentOrange
     end
 
     def analysis
-      AgentOrange.debug "PLATFORM ANALYSIS", 2
+      SpecialAgent.debug "PLATFORM ANALYSIS", 2
       self.debug_content(:type => self.type, :name => self.name, :version => self.version)
-      AgentOrange.debug "", 2
+      SpecialAgent.debug "", 2
     end
 
     def to_s
